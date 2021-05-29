@@ -3,38 +3,33 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-class Clock extends React.Component {
-  constructor(props) {
+class Toggle extends React.Component {
+  constructor(props){
     super(props);
-    this.state = { date: new Date() };
+    this.state = {isToggleOn: true};
+
+    //bind
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  //Metodos de Ciclos de vida
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
-  }
-  //Metodos de Ciclos de vida
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick(){
-    this.setState({
-      date: new Date()
-    });
+  handleClick(){
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
   }
 
   render() {
-    return (
-      <div>
-        <h1>Hello, World</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}</h2>
-      </div>
+    return(
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
     );
   }
-}
 
-ReactDOM.render(<Clock />, document.getElementById("root"));
+}
+ReactDOM.render(
+  <Toggle/>, document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

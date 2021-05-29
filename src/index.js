@@ -1,34 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-class Toggle extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {isToggleOn: true};
 
-    //bind
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(){
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
-  }
-
-  render() {
-    return(
-      <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? 'ON' : 'OFF'}
-      </button>
-    );
-  }
-
-}
 ReactDOM.render(
-  <Toggle/>, document.getElementById('root')
+  <App/>, document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
